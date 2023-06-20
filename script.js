@@ -100,13 +100,13 @@ function getPasswordOptions() {
     var numbers = parseInt(confirm("Click to confirm having numbers in your password"));
 
     var passwordOptions = {
-        length: length,
-        specialCharacters: specialCharacters,
-        lowerCase: lowerCasedCharacters,
-        upperCase: upperCasedCharacters,
-        numbers: numericCharacters,
-    };
-    return passwordOptions;
+      length: length,
+      specialCharacters: specialCharacters,
+      lowerCase: lowerCasedCharacters,
+      upperCase: upperCasedCharacters,
+      numbers: numericCharacters,
+  };
+  return passwordOptions;
 }
 
 function generatePassword() {
@@ -116,7 +116,7 @@ function generatePassword() {
     var selectedCharacters = [];
 
     if(options.specialCharacters) {
-        selectedCharacters = selectedCharacters.concat(specialCharacters);
+     selectedCharacters = selectedCharacters.concat(specialCharacters);
   };
 
     if(options.lowerCase) {
@@ -124,22 +124,33 @@ function generatePassword() {
   };
 
     if(options.upperCase) {
-    selectedCharacters = selectedCharacters.concat(upperCasedCharacters);
+     selectedCharacters = selectedCharacters.concat(upperCasedCharacters);
   };
 
     if(options.numbers) {
-  selectedCharacters = selectedCharacters.concat(numericCharacters);
+      selectedCharacters = selectedCharacters.concat(numericCharacters);
   };
 
   console.log(selectedCharacters);
 
   var result = []
 
-  for(let i = 0; i < options.length; i++) {
-    var randomIndex = Math.floor(Math.random() + options.length);
+  for(let i = 0; i <= options.length; i++) {
+    var randomIndex = Math.floor(Math.random() + i + options.length);
     console.log(randomIndex);
     var possibleCharacter = selectedCharacters[randomIndex];
     result.push(possibleCharacter);
+  }
+
+// catch
+  function chech(error) {  
+    if(length >= 129) {
+      confirm("The length of the password must 128 characters or shorter")
+    }
+  
+    if(length <= 7) {
+      confirm("The length of the password must be 8 characters or longer")
+    }
   }
 
   return result.join("");
